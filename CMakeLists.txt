@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
+
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_LIST_DIR}/cmake/arm-none-eabi-gcc.cmake)
+
 include(./ext/c4core/cmake/c4Project.cmake)
 project(ryml
     DESCRIPTION "Rapid YAML parsing and emitting"
