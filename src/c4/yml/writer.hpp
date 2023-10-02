@@ -7,7 +7,7 @@
 
 #include <c4/substr.hpp>
 #include <stdio.h>  // fwrite(), fputc()
-#include <string.h> // memcpy()
+// #include <string.h> // memcpy()
 
 
 namespace c4 {
@@ -184,7 +184,9 @@ struct WriterBuf
         RYML_ASSERT( ! m_buf.overlaps(a));
         if(m_pos + N-1 <= m_buf.len)
         {
-            memcpy(&(m_buf[m_pos]), a, N-1);
+            for (size_t i = 0; i < N-1; i++)
+				m_buf[m_pos+i] = a[i];
+            // memcpy(&(m_buf[m_pos]), a, N-1);
         }
         m_pos += N-1;
     }
@@ -195,7 +197,9 @@ struct WriterBuf
         RYML_ASSERT( ! sp.overlaps(m_buf));
         if(m_pos + sp.len <= m_buf.len)
         {
-            memcpy(&(m_buf[m_pos]), sp.str, sp.len);
+            for (size_t i = 0; i < sp.len; i++)
+				m_buf[m_pos+i] = sp.str[i];
+            // memcpy(&(m_buf[m_pos]), sp.str, sp.len);
         }
         m_pos += sp.len;
     }
